@@ -7,19 +7,19 @@
 Here are a few popular libraries and technologies to look at as you start to think of your idea:
 
 * <a href="http://lab.hakim.se/reveal-js" target="_blank">reveal.js</a>
-* <a href="http://d3js.org" target="_blank">d3.js</a>
-* <a href="http://cutjs.org" target="_blank">cut.js</a>
-* <a href="http://wellcaffeinated.net/PhysicsJS" target="_blank">physics.js</a>
+* <a href="http://d3js.org" target="_blank">D3.js</a>
+* <a href="http://piqnt.com/stage.js" target="_blank">Stage.js</a>
+* <a href="http://wellcaffeinated.net/PhysicsJS" target="_blank">PhysicsJS</a>
 * <a href="http://threejs.org" target="_blank">three.js</a>
-* <a href="https://famo.us" target="_blank">famo.us</a>
-* <a href="http://www.chartjs.org" target="_blank">chart.js</a>
-* <a href="http://masonry.desandro.com" target="_blank">masonry</a>
-* <a href="http://paperjs.org" target="_blank">paper.js</a>
+* <a href="http://www.Chartjs.org" target="_blank">chart.js</a>
+* <a href="http://masonry.desandro.com" target="_blank">Masonry</a>
+* <a href="http://paperjs.org" target="_blank">Paper.js</a>
 * <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Canvas_tutorial" target="_blank">canvas</a>
-* css3 transitions
-  * <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions" target="_blank">MDN guide</a>
-  * <a href="http://www.adobe.com/devnet/html5/articles/using-css3-transitions-a-comprehensive-guide.html" target="_blank">excellent tutorial</a>
-* Find even more <a href="http://www.jsdb.io/?sort=rating" target="_blank">here</a>
+* CSS3 Transitions:
+  * <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions" target="_blank">MDN Guide</a>
+  * <a href="http://www.adobe.com/devnet/html5/articles/using-css3-transitions-a-comprehensive-guide.html" target="_blank">Adobe Tutorial</a>
+
+Find even more <a href="http://www.jsdb.io/?sort=rating" target="_blank">here</a>
 
 ## Tips & Resources
 
@@ -34,7 +34,7 @@ Here are a few popular libraries and technologies to look at as you start to thi
 
 ## Requirements
 
-* Use an external front-end library or technology we haven't covered in class to create a website or app of your choice.
+* Use a front-end library or technology we haven't covered in class to create a website or app of your choice.
 * Focus on CSS styling and user experience - build something you'd be proud to show others.
 
 ## Getting Started
