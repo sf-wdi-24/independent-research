@@ -44,3 +44,4 @@ Find even more ideas on <a href="http://www.javascripting.com/?sort=rating" targ
 
 * As you make code changes, frequently commit and push to GitHub.
 * Once you've finished the assignment and pushed your work to GitHub, make a pull request from your fork to the original repo.
+* **You'll be asked to share what you learned with your classmates on Monday morning.**
