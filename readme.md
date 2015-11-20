@@ -15,6 +15,7 @@ Here are a few popular libraries and technologies to you can consider using:
 * <a href="http://lab.hakim.se/reveal-js" target="_blank">reveal.js</a>
 * <a href="http://piqnt.com/stage.js" target="_blank">Stage.js</a>
 * <a href="http://threejs.org" target="_blank">three.js</a>
+* <a href="https://jqueryui.com/draggable" target="_blank">jQuery UI Draggable</a>
 * CSS3 Transitions:
   * <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions" target="_blank">MDN Guide</a>
   * <a href="http://www.adobe.com/devnet/html5/articles/using-css3-transitions-a-comprehensive-guide.html" target="_blank">Adobe Tutorial</a>
