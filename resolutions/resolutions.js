@@ -33,7 +33,21 @@ if (Meteor.isClient) {
       return false; 
     }
   }); 
-
+  // removing resolutions using the button 
+  Template.resolution.events({
+    // add toogle event 
+    'click .toggle-checked': function(){
+        // find current resolution 
+        // create set object and including properties that will be modified
+        // updates, saves in db and refreshes page
+        Resolutions.update(this.id, {$set:{checked: !this.checked}});
+    },
+    // looking for the delete class 
+    'click .delete': function(){
+      // takes the id from a specific object and removes it
+      Resolutions.remove(this._id);
+    }
+  }); 
 }
 
 if (Meteor.isServer) {
