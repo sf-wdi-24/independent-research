@@ -1,43 +1,105 @@
 $(function(){
 
   var new_data = {};
+  var congressman_data = {};
+  var state_count_aye_data = {};
+  var state_count_no_data = {};
+  var state_count_obs_data = {};
+  var state_count_tot_data = {};
+  var state_count = [];
   var locations_array = [];
   var congressman_array = [];
   var z_array = [];
   var state = '';
   var vote = '';
   var lastname = '';
+  var aye_votes = '';
+  var no_votes = '';
+  var abstain_votes = '';
+  var total_votes = '';
 
-  $.get('https://www.govtrack.us/api/v2/vote_voter?vote=117985', function(dataobject){
+  $.get('https://www.govtrack.us/api/v2/vote_voter?vote=117985&limit=600', function(dataobject){
         
+        function sum( obj ) {
+          var summr = 0;
+          for( var el in obj ) {
+            if( obj.hasOwnProperty( el ) ) {
+              summr += parseFloat( obj[el] );
+            }
+          }
+          return summr;
+        }
 
 
-        function setupArrays(){
+        function setupArrays(callback){
           console.log('started setupArrays function');
           for(var i = 0; i<dataobject.objects.length; i++){
             state = dataobject.objects[i].person_role.state;
             vote = dataobject.objects[i].option.value;
-            lastname = dataobject.objects[i].person_role.lastname;
+            lastname = dataobject.objects[i].person.lastname;
+            test_arr = [];
+            
             if(vote === "Aye"){
+              state_count_tot_data[state] = (state_count_tot_data[state] || 0) + 1;
+              state_count_aye_data[state] = (state_count_aye_data[state] || 0) + 1;
               new_data[state] = (new_data[state] || 0) + 1;
+              congressman_data[state] = (congressman_data[state] || '') + lastname + ": " + vote + ", ";
             } else if(vote === "No") {
+              state_count_tot_data[state] = (state_count_tot_data[state] || 0) + 1;
+              state_count_no_data[state] = (state_count_no_data[state] || 0) + 1;
               new_data[state] = (new_data[state] || 0) - 1;
+              congressman_data[state] = (congressman_data[state] || '') + lastname + ": " + vote + ", ";
             } else {
+              state_count_tot_data[state] = (state_count_tot_data[state] || 0) + 1;
+              state_count_obs_data[state] = (state_count_obs_data[state] || 0) + 1;
               new_data[state] = (new_data[state] || 0) + 0;
+              congressman_data[state] = (congressman_data[state] || '') + lastname + ": " + vote + ", ";
             }
+
           }
+          aye_votes = sum(state_count_aye_data);
+          no_votes = sum(state_count_no_data);
+          abstain_votes = sum(state_count_obs_data);
+          total_votes = sum(state_count_tot_data);
           console.log('end setupArrays function');
-          createArrays();
+          callback();
         }
 
-        function createArrays(){ 
+        function createArrays(callback){
           console.log('started createArrays function');
-          for(var x = 0; x < new_data.length; x++){
-            locations_array.push(new_data[x]);
-            z_array.push(new_data[x]);
+          for (var key in new_data) {
+            if (new_data.hasOwnProperty(key)) {
+              locations_array.push(key);
+              //z_array.push(new_data[key]);
+            }
+          }
+          for (var key2 in congressman_data) {
+            if (congressman_data.hasOwnProperty(key2)) {
+              congressman_array.push(congressman_data[key2]);
+            }
+          }
+          for (var key3 in state_count_tot_data) {
+            if (state_count_tot_data.hasOwnProperty(key3)) {
+              if(state_count_aye_data.hasOwnProperty(key3)){
+                x = (state_count_aye_data[key3] / state_count_tot_data[key3]).toFixed(2);
+                if(state_count_obs_data.hasOwnProperty(key3)){
+                  state_count.push(state_count_aye_data[key3] + "/" + state_count_tot_data[key3] + " aye votes" + " (" + state_count_obs_data[key3] + " no votes)");
+                } else {
+                  state_count.push(state_count_aye_data[key3] + "/" + state_count_tot_data[key3] + " aye votes");
+                }
+              } else {
+                x = 0;
+                if(state_count_obs_data.hasOwnProperty(key3)){
+                  state_count.push(0 + "/" + state_count_tot_data[key3] + " aye votes" + " (" + state_count_obs_data[key3] + " no votes)");
+                } else {
+                  state_count.push(0 + "/" + state_count_tot_data[key3] + " aye votes");
+                }
+              }
+              z_array.push(x);
+            }
           }
           console.log('ended createArrays function');
-          dataMap();
+          callback();
         }
         
         function dataMap(){
@@ -47,14 +109,18 @@ $(function(){
                   locationmode: 'USA-states',
                   locations: locations_array,
                   z: z_array,
-                  //text: congressman_array,
+                  zmin: 0,
+                  zmax: 1,
+                  text: state_count,
+                  colorbar: {title: "% Voted Aye"},
+                  hoverinfo: "text+location",
                   autocolorscale: true
           }];
 
           console.log(data);
 
           var layout = {
-              title: 'title',
+              title: 'SAFE Act Vote',
               geo:{
                   scope: 'usa',
                   countrycolor: 'rgb(255, 255, 255)',
@@ -71,7 +137,11 @@ $(function(){
           console.log('ended mapData function');
         }
 
-        setupArrays();
+        setupArrays(function(){
+          createArrays(function(){
+            dataMap();
+          });
+        });
   });
 
   // Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_usa_states.csv', function(err, rows){
