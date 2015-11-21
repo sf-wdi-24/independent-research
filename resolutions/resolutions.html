@@ -3,13 +3,24 @@
 </head>
 <!--  the body uses the information from the template-->
 <body>
-	<ul>
-	<!-- for every single item, the template will be applied, it will be iterated, since there is a #each-->
-	{{#each resolutions}}
-		<!-- the carrot denotes a template, which is title -->
-		{{> resolution}}
-	{{/each}}
-	</ul>
+	
+	<div class="container"> 
+		<header>
+			<h1>Weekly Resolutions</h1>
+			<!-- add form  -->
+			<form class="new-resolution">
+				<input type="text" name="title" placeholder="A new resolution">
+				<input type="submit" value="Submit"> 
+			</form>
+		</header>
+		<ul>
+			<!-- for every single item, the template will be applied, it will be iterated, since there is a #each-->
+			{{#each resolutions}}
+				<!-- the carrot denotes a template, which is title -->
+				{{> resolution}}
+			{{/each}}
+		</ul>
+	</div>
 </body>
 
 <template name="resolution">
