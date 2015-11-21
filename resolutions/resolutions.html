@@ -1,15 +1,19 @@
 <head>
   <title>resolutions</title>
 </head>
-
+<!--  the body uses the information from the template-->
 <body>
 	<ul>
-	{{> resolution}}
+	<!-- for every single item, the template will be applied, it will be iterated, since there is a #each-->
+	{{#each resolutions}}
+		<!-- the carrot denotes a template, which is title -->
+		{{> resolution}}
+	{{/each}}
 	</ul>
 </body>
 
 <template name="resolution">
-  <li>Title</li>
+  <li>{{title}}</li>
 </template>
 
 
