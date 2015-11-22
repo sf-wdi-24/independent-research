@@ -1,9 +1,23 @@
 .canvasViewport {
-
-	border: 2px solid #02001F;
+	background-image: url('divbackground.png');
+	/*border: 2px solid #385c2F;*/
 	height: 510px;
+	position: absolute;
 	width: 1010px;
 }
 h1 {
 	display: inline-block;
+}
+
+.backboard {
+  left: 799px;
+  position: absolute;
+  top: 143px;
+  z-index: 1;
+}
+
+.legend {
+	position: absolute;
+  left: 10px;
+  top: 350px;
 }

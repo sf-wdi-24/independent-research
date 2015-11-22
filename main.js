@@ -1,83 +1,98 @@
 $(function() {
+	//loading before play is clicked
+	$('#shoot').hide();
 
+
+
+$('#reset').click(function(event){
+			$('#reset').text("Reset").removeClass("btn-warning").addClass("btn-success");
+			$('#shoot').show();
 	Physics(function(world){
 
 		//  creates 'world' for elements to reside in
 		var renderer = Physics.renderer('canvas', {
     el: 'viewport', // id of the canvas element
     width: 1000,
-    height: 500
+    height: 1000
 		});
 
 		var triangle = Physics.body('convex-polygon',{
-			x: 210,
-			y: 499,
+			x: 110,
+			y: 490,
+			restitution: 0,
+			treatment: 'static',
+			hidden: true,
 			vertices: [
-				{x: -60, y:0},
-				{x: -42, y:-100},
-				{x: -30, y:-100},
-				{x: 20, y:0}
+				{x: 0, y:0},
+				{x: -50, y:100},
+				{x: 50, y:100},
 			]
 		});
 
-		var ball = Physics.body('circle', {
-			x: 50,
-			y: 40,
-			radius: 20,
-			mass:1
-		});
-
 		var rectangle = Physics.body('rectangle', {
-			x: 190,
+			x: 110,
 			y: 400,
-			width: 300,
+			width: 150,
 			height: 10,
-			mass:2
+			mass:2,
+			hidden: true,
+			restitution: 0
 		});
-		var rectangleLip = Physics.body('rectangle', {
-			x: 100,
-			y:390,
-			width: 5,
-			height: 10
-		});
-		var catapultArm = Physics.body('compound', {
-			x:160,
-			y:400,
-			children: [
-				rectangle,rectangleLip
-			],
-			mass: 0.2
-		});
+		
 		var helperBox = Physics.body('rectangle', {
 			x:20,
-			y:490,
+			y:475,
 			height: 100,
-			width: 60
+			width: 50,
+			restitution: 0,
+			hidden: true,
+			treatment: 'static'
 		});
 
 		var fallingBox = Physics.body('rectangle', {
-			x: 320,
+			x: 160,
 			y: 0,
 			vy: 1,
-			height: 40,
-			width: 40,
+			height: 5,
+			width: 5,
 			mass: 2,
+			hidden: true,
 			styles: {
-                fillStyle: '#268bd2',
-                angleIndicator: '#268bd2',
-                strokeStyle: '#155479',
-                lineWidth: 1
-            }
+              fillStyle: '#268bd2',
+              angleIndicator: '#268bd2',
+              strokeStyle: '#155479',
+              lineWidth: 1
+            	}
 		});
 
 		var projectile = Physics.body('rectangle', {
 			x: 70,
 			y: 308,
 			height: 20,
-			width: 20
+			width: 20,
+			restitution: 0,
+			mass: 0.9
+		});
+
+		var backboard = Physics.body('rectangle', {
+			x: 900,
+			y: 200,
+			height: 200,
+			width: 5,
+			treatment: 'static',
+			hidden: true
+		});
+
+		var rimLeft = Physics.body('rectangle', {
+			x: 800,
+			y: 400,
+			width: 1,
+			height: 300,
+			treatment: 'static',
+			hidden: true
 		});
 		// set boundaries on world
-		var bounds = Physics.aabb(0,0,2000,500);
+		var bounds = Physics.aabb(0,0,2000,1000);
 
 		// add gravity
 		world.add(Physics.behavior('constant-acceleration'));
@@ -88,10 +103,11 @@ $(function() {
 			restitution: 0
 		}));
 
-		//world.add(projectile);
-		world.add(ball);
-		//world.add(rectangle);
-		world.add(catapultArm);
+
+		world.add(rimLeft);
+		world.add(backboard);
+		world.add(projectile);
+		world.add(rectangle);
 		world.add(triangle);
 		world.add(helperBox);
 		// redraw world
@@ -113,18 +129,14 @@ $(function() {
 			world.render();
 		});
 
-		$('#fire').click(function(event){
-		console.log('works');
+		$('#shoot').click(function(event){
 		world.add(fallingBox);
 		});
 
-		$('#reset').click(function(event){
-			world.reset();
-		});
 		world.render();
 	}); //end of Physics world function
 
 
-
+});
 
 });
