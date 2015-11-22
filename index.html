@@ -2,135 +2,17 @@
 <html>
 	<head>
 		<title>Three.js project</title>
-		<style>
-			body { margin: 0; }
-			canvas { width: 100%; height: 100% }
-		</style>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	</head>
 	<body>
+		<div id="canvas"></div>
+		<!-- jquery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+		<!-- bootstrap js -->
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="js/three.min.js"></script>
-		<div id="canvas">
-		<script>
-			var container, camera, scene, renderer, mesh,
-
-    objects = [],
-    
-    count = 0,
-
-    CANVAS_WIDTH = 400,
-    CANVAS_HEIGHT = 400;
-
-// info
-info = document.createElement( 'div' );
-info.style.position = 'absolute';
-info.style.top = '30px';
-info.style.width = '100%';
-info.style.textAlign = 'center';
-info.style.color = '#f00';
-info.style.backgroundColor = 'transparent';
-info.style.zIndex = '1';
-info.style.fontFamily = 'Monospace';
-info.innerHTML = 'INTERSECT Count: ' + count;
-info.style.userSelect = "none";
-info.style.webkitUserSelect = "none";
-info.style.MozUserSelect = "none";
-document.body.appendChild( info );
-
-container = document.getElementById( 'canvas' );
-document.body.appendChild( container );
-
-renderer = new THREE.WebGLRenderer();
-renderer.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
-container.appendChild( renderer.domElement );
-
-scene = new THREE.Scene();
-
-camera = new THREE.PerspectiveCamera( 45, CANVAS_WIDTH / CANVAS_HEIGHT, 1, 1000 );
-camera.position.x = 600;
-camera.position.y = 100;
-camera.position.z = 600;
-camera.lookAt( {x: 0, y: 100, z: 0} );
-scene.add( camera );
-
-scene.add( new THREE.AmbientLight( 0x222222 ) );
-
-var light = new THREE.PointLight( 0xffffff, 1 );
-camera.add( light );
-
-lampshade = new THREE.Mesh( 
-	new THREE.CylinderGeometry( 70, 90, 125, 32, 1, true ), 
-	new THREE.MeshPhongMaterial( { color : 0xFFD800 } 
-) );
-lampshade.position.x = 0;
-lampshade.position.y = 225;
-lampshade.position.z = 0;
-scene.add( lampshade );
-objects.push( lampshade );
-
-lamppost = new THREE.Mesh(
-    new THREE.CylinderGeometry( 25, 25, 200, 32, 1 ),
-    new THREE.MeshPhongMaterial( { color : 0x654321 }
-) );
-lamppost.position.x = 0;
-lamppost.position.y = 90;
-lamppost.position.z = 0;
-scene.add( lamppost );
-objects.push( lamppost );
-
-base = new THREE.Mesh(
-    new THREE.CylinderGeometry( 80, 80, 5, 32, 1 ),
-    new THREE.MeshPhongMaterial( { color : 0xE45537 }
-) );
-base.position.x = 0;
-base.position.y = 0;
-base.position.z = 0;
-scene.add( base );
-objects.push( base );
-
-// find intersections
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2();
-
-// mouse listener
-document.addEventListener( 'mousedown', function( event ) {
-    
-    // For the following method to work correctly, set the canvas position *static*; margin > 0 and padding > 0 are OK
-    mouse.x = ( ( event.clientX - renderer.domElement.offsetLeft ) / renderer.domElement.width ) * 2 - 1;
-    mouse.y = - ( ( event.clientY - renderer.domElement.offsetTop ) / renderer.domElement.height ) * 2 + 1;
-    
-    // For this alternate method, set the canvas position *fixed*; set top > 0, set left > 0; padding must be 0; margin > 0 is OK
-    //mouse.x = ( ( event.clientX - container.offsetLeft ) / container.clientWidth ) * 2 - 1;
-    //mouse.y = - ( ( event.clientY - container.offsetTop ) / container.clientHeight ) * 2 + 1;
-
-	raycaster.setFromCamera( mouse, camera );
-
-    intersects = raycaster.intersectObjects( objects );
-
-    if ( intersects.length > 0 ) {
-        
-        info.innerHTML = 'INTERSECT Count: ' + ++count;
-        
-    }
-
-}, false );
-
-function render() {
-
-    
-    renderer.render( scene, camera );
-
-}
-
-(function animate() {
-
-    requestAnimationFrame( animate );
-
-    render();
-
-})();
-
-
-		</script>
-		</div>
+		<script src="main.js"></script>
+		
 	</body>
 </html>
