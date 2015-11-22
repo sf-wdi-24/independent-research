@@ -1,0 +1,9 @@
+.canvasViewport {
+
+	border: 2px solid #02001F;
+	height: 510px;
+	width: 1010px;
+}
+h1 {
+	display: inline-block;
+}
