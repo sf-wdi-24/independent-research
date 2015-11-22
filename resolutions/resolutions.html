@@ -10,13 +10,16 @@
 			<!-- hide items that have been completed -->
 			<label class="hide-finished">
 				<input type="checkbox" checked="{{hideFinished}}">
-				Finished Resolutions
+				Hide Finished Resolutions
 			</label>
+			<!-- checks if users are logged in  -->
+			{{#if currentUser}}
 			<!-- add form  -->
 			<form class="new-resolution">
 				<input type="text" name="title" placeholder="Next Resolution">
 				<input type="submit" value="Submit"> 
 			</form>
+			{{/if}}
 		</header>
 		<ul>
 			<!-- for every single item, the template will be applied, it will be iterated, since there is a #each-->
@@ -25,6 +28,8 @@
 				{{> resolution}}
 			{{/each}}
 		</ul>
+	<!-- creating login template -->
+	{{> loginButtons}}	
 	</div>
 </body>
 

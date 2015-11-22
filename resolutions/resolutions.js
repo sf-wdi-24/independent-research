@@ -28,17 +28,13 @@ if (Meteor.isClient) {
     'submit .new-resolution': function(event){
       // retrieving the title from the form 
       var title = event.target.title.value; 
-      // create new resolution as an object
-      // Resolution.insert saves resolution to database and updates view
-      Resolutions.insert({
-        // the title of the object is equal to the variable title
-        title : title, 
-        // get time at which the resolution was created
-        createdAt: new Date()
-      });
 
+      // using method to call a meteor method
+      Meteor.call("addResolution, title"); 
+    
       //clear form after resolution is submitted
       event.target.title.value = ""; 
+
       // prevents the page from refreshing when clearing the form
       return false; 
     },
@@ -52,21 +48,53 @@ if (Meteor.isClient) {
   Template.resolution.events({
     // add toogle event 
     'click .toggle-checked': function(){
-        // find current resolution 
-        // create set object and including properties that will be modified
-        // updates, saves in db and refreshes page
-        Resolutions.update(this._id, {$set: {checked: !this.checked}});
+        // calling updateResolutions and sending id
+        Meteor.call("updateResolution", this._id, !this.checked);
     },
     // looking for the delete class 
     'click .delete': function(){
       // takes the id from a specific object and removes it
-      Resolutions.remove(this._id);
+      Meteor.call("deleteResolution",this._id);
     }
   }); 
+
+  // modifying ui config so that a user only requires a username and not an email and a password, as set by default.
+  // by default the password must be at least 6 characters long
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  }); 
+
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
   });
+// methods that application can have access to on the client side 
+Meteor.methods({
+  // sending title to function and it will be used in title
+  addResolution: function(title){
+      // Resolution.insert saves resolution to database and updates view
+      Resolutions.insert({
+        // the title of the object is equal to the variable title
+        title : title, 
+        // get time at which the resolution was created
+        createdAt: new Date()
+    }); 
+  }, 
+  // update resolutions
+  updateResolution: function(id, checked) {
+    Resolutions.update(id, {$set: {checked: checked}}); 
+  },
+  // delete resolutions 
+  deleteResolution: function(id) {
+    Resolutions.remove(id); 
+
+  }
+}); 
+
+
+
+
+
 }
