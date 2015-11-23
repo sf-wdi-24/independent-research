@@ -1,0 +1,40 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html { 
+	overflow-y: scroll; 
+}
+
+body { 
+	font-family: sans-serif; 
+}
+
+.grid { 
+	background: #DDD; 
+}
+
+/*clear fix*/
+.grid:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+.grid-item,
+.grid-sizer {
+	width: 33.333%;
+}
+
+.grid-item--width2 { 
+	width: 40%; 
+}
+
+.grid-item img {
+	display: block;
+	max-width: 100%;
+}
+
