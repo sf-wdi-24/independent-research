@@ -1,4 +1,9 @@
 $(Document).ready(function(){
-	console.log("main.js loaded!");
-
+	$('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+  });
+  
 });
