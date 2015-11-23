@@ -1,0 +1,51 @@
+<head>
+  <title>resolutions</title>
+</head>
+<!--  the body uses the information from the template-->
+<body>
+	
+	<div class="container"> 
+		<header>
+			<h1>Weekly Resolutions</h1>
+			<!-- hide items that have been completed -->
+			<label class="hide-finished">
+				<input type="checkbox" checked="{{hideFinished}}">
+				Hide Finished Resolutions
+			</label>
+			<!-- checks if users are logged in  -->
+			{{#if currentUser}}
+			<!-- add form  -->
+			<form class="new-resolution">
+				<input type="text" name="title" placeholder="Next Resolution">
+				<input type="submit" value="Submit"> 
+			</form>
+			{{/if}}
+		</header>
+		<ul>
+			<!-- for every single item, the template will be applied, it will be iterated, since there is a #each-->
+			{{#each resolutions}}
+				<!-- the carrot denotes a template, which is title -->
+				{{> resolution}}
+			{{/each}}
+		</ul>
+	<!-- creating login template -->
+	{{> loginButtons}}	
+	</div>
+</body>
+
+<template name="resolution">
+  <li class="{{#if checked}}checked{{/if}}">
+  	<!-- checkbox for resolution -->
+  	<!-- input of resolution -->
+  	<input type="checkbox" checked="{{checked}}" class="toggle-checked">
+  	<!-- text of resolution -->
+	<span class="text">{{title}}</span>
+	<!-- remove button of resolution -->
+  	<button class="delete">Remove</button>
+  </li> 
+</template>
+
+
+
+
+
