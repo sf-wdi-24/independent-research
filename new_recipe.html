@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cooking-My Recepie</title>
+	<!-- bootstrap css -->
+  	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<!-- custom styles -->
+	<link rel="stylesheet" type="text/css" href="new_recipe.css">
+</head>
+<body>
+	<div class="container-full">
+		<!-- navbar -->
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      	<a class="navbar-brand" href="/index.html">Cooking</a>
+		    </div>
+			<div id="menu">
+			  	<button class="btn btn-primary" id="breakfastLeast"><a href="/breakfast.html">Breakfast</a></button>
+			    <button class="btn btn-primary" id="lunchLeast"><a href="/lunch.html">Lunch</a></button>
+			    <button class="btn btn-primary" id="dinnerLeast"><a href="/dinner.html">Dinner</a></button>
+			</div>
+		    <div id="newDish">
+		   		 <button class="btn btn-primary" id="newRecipe"><a href="/new_recipe.html">Add A New Recipe</a></button>
+			</div>
+		  </div>
+		</nav>
+
+	<div class="row">
+		<div class="col-md-6">
+			<h4 id="recipe" class="text-center">Build Your Recipe:</h4>
+			<div id="form">
+				<form id="newRecipeForm">
+	  				<div class="form-group">
+	    				<input type="text" class="form-control" id="nameOfRecipe" placeholder="What Are We Cooking?">
+	  				</div>
+	  				<div class="form-group">
+	    				<input type="text" class="form-control" id="numberOfPeople" placeholder="For How Many People?">
+	  				</div>
+
+					<div class="whichService">
+	  					<h5>What Are You Cooking?</h5>
+					
+			    				<select id="service">
+								  <option>Breakfast</option>
+								  <option>Lunch</option>
+								  <option>Dinner</option>
+								</select>
+					</div>
+				
+	  				<div class="form-group">
+	    					<ul id="selectedIngredients">
+	    						<h5>Ingredients:</h5>
+	    						<li><h5>Drag your ingredients here</h5></li>
+ 							</ul> 
+	  				</div>
+	  				<div class="form-group">
+	    				<label for="dishImage">Image of The Dish</label>
+	   					 <input type="file" id="dishImage">
+	  				</div>
+	  				<div class="checkbox">
+	    		
+	  				</div>
+	  				<div class="form-group">
+	    				<textarea class="form-control" id="instructions" placeholder="Drag from the list" rows="10"></textarea>   
+	  				</div>
+	  				<button type="submit" id="submitRecipe" class="btn btn-default"></button>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<ul id="allTheIngredients">
+				<h4 id="listTitle" class="text-center">Ingredients you can use:</h4>
+				<script id= "listOfIngredients" type="text/x-hendlebars-template">
+	    			{{#each items}}
+	    			<li class="newIngredient">
+	    				<div class= "row rowItem">
+			    			<div class="col-md-2 col-md quantity">
+			    				<input type="text" class="form-control quantityOfItem" placeholder="Quantity">
+			    			</div>
+			    			<div class="col-md-3 howToMeasure">
+			    				<select class="form-control measure">
+								  <option>Cup</option>
+								  <option>TSP</option>
+								  <option>Spoon</option>
+								  <option>Piece</option>
+								  <option>Other</option>
+								</select>
+							</div>
+							<div class="col-md-3 item">
+								<p>{{ingredient}}</p>
+							</div>
+	    				</div>
+	    			</li>
+	    			{{/each}}
+	    		</script>	
+  			</ul>
+		</div>
+	</div>
+
+	</div>
+
+	<!-- handlebars -->
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+	<!-- jquery -->
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<!-- custom script -->
+	<script type="text/javascript" src="new_recipe.js"></script>
+  	<!-- bootstrap js -->
+ 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 	<!-- Sortable -->
+ 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+ 	<!-- slidr.js -->
+ 	<script type="text/javascript" src="/Users/zoharmuzafi/develop/slidr/slidr.min.js"></script>
+
+
+
+</body>
+</html>

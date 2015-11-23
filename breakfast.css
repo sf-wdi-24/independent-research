@@ -1,0 +1,29 @@
+body{
+	background: url("http://media4.onsugar.com/files/2014/01/03/080/n/1922729/202b9b05007d9492_Co.jpg") no-repeat;
+	background-size: cover; 
+}
+#newDish{
+	position: right;
+	float:right;
+}
+#menu{
+	float:left;
+}
+.btn{
+	margin: 8px;
+}
+a{
+	color: white;
+}
+#lunchId{
+	margin: 10px, 0px;
+}
+.singleRecipe{
+	background-color: rgba(148, 141, 141, 0.7);
+}
+.rowRecipe{
+	margin: 10px 0px;
+}
+.buyItNow{
+	padding: 20px 20px;
+}
