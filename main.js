@@ -21,6 +21,9 @@ $(function() {
 			$overY = $('#over-y'),
 			$over45 = $('#over45'),
 			$overNeg45 = $('#over-45'),
+			$90deg = $('.90deg'),
+			$180deg = $('.180deg'),
+			$270deg = $('.270deg'),
 			$coordinateax = $('.ax'),
 			$coordinateay = $('.ay'),
 			$coordinatebx = $('.bx'),
@@ -62,6 +65,9 @@ $(function() {
 	$overY.on('click', reflectY);
 	$over45.on('click', reflect45);
 	$overNeg45.on('click', reflectNeg45);
+	$90deg.on('click', rotate90);
+	$180deg.on('click', rotate180);
+	$270deg.on('click', rotate270);
 
 	// Store height and width and set the canvas	
 	var width = $canvas.width();
@@ -254,6 +260,57 @@ $(function() {
 		$chooseTransformation.toggle();
 		$transformationBtns.toggle();
 		$rotation.toggle();
+	}
+
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a 90 degree rotation.  Then calls function
+	// to render triangle DEF and show the new coordinates
+	function rotate90() {
+		event.preventDefault();
+		triangleDEF.dx = -1 * triangleABC.ay;
+		triangleDEF.dy = triangleABC.ax;
+		triangleDEF.ex = -1 * triangleABC.by;
+		triangleDEF.ey = triangleABC.bx;
+		triangleDEF.fx = -1 * triangleABC.cy;
+		triangleDEF.fy = triangleABC.cx;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
+	}
+
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a 90 degree rotation.  Then calls function
+	// to render triangle DEF and show the new coordinates
+	function rotate180() {
+		event.preventDefault();
+		triangleDEF.dx = -1 * triangleABC.ax;
+		triangleDEF.dy = -1 * triangleABC.ay;
+		triangleDEF.ex = -1 * triangleABC.bx;
+		triangleDEF.ey = -1 * triangleABC.by;
+		triangleDEF.fx = -1 * triangleABC.cx;
+		triangleDEF.fy = -1 * triangleABC.cy;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
+	}
+
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a 90 degree rotation.  Then calls function
+	// to render triangle DEF and show the new coordinates
+	function rotate270() {
+		event.preventDefault();
+		triangleDEF.dx = triangleABC.ay;
+		triangleDEF.dy = -1 * triangleABC.ax;
+		triangleDEF.ex = triangleABC.by;
+		triangleDEF.ey = -1 * triangleABC.bx;
+		triangleDEF.fx = triangleABC.cy;
+		triangleDEF.fy = -1 * triangleABC.cx;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
 	}
 
 	// Takes in the values of the points and calls functions to render
