@@ -7,12 +7,15 @@ $(function() {
 
 	//ball x and y positions
 	var ballX = 10;
-	var ballPosX = 2;
+	var ballPosX = 10;
 	var ballY = 10;
-	var ballPosY = 2;
+	var ballPosY = 10;
 
 	//paddle variables
-	var playerPaddleY = 90;
+	var playerPaddleY = 230;
+	var computerPaddleY = 10;
+	var paddleWidth = 10;
+
 	//set paddle height
 	var paddleHeight = 100;
 
@@ -31,11 +34,11 @@ $(function() {
 	}, 1000/fps);
 
 	//add event listener
-	$(canvas).on('mousemove', function (event) {
-		var mousePos = mousePosition(event);
-		playerPaddleY = mousePos.y
-		console.log('mouse moves')
-	});
+	$(canvas).on('mousemove', function (evt) {
+		var mousePos = mousePosition(evt);
+		//mousePos.y minus paddheight/2 makes it so the mouse pointer is at center
+		computerPaddleY = mousePos.y-(paddleHeight/2);
+	})
 
 
 
@@ -51,11 +54,19 @@ function moveBall() {
 
 	//if ball width exceeds the width of the canvas
 	if(ballX > (canvas.width - 10)) {
-		ballPosX = -ballPosX;
+		if(ballY > computerPaddleY && ballY < computerPaddleY+paddleHeight) {
+			ballPosX = -ballPosX;
+		}else{
+			resetBall();
+		}
 	}
 	//0 is the left side of the board width
 	if (ballX < 0) {
-		ballPosX = -ballPosX;
+		if (ballY > playerPaddleY && ballY < playerPaddleY+paddleHeight ) {
+			ballPosX = -ballPosX;
+		}else {
+			resetBall();	
+		}
 	};
 	//if ballY height exceeds the height of the canvas
 	if(ballY > (canvas.height - 7)) {
@@ -64,12 +75,15 @@ function moveBall() {
 	//0 is the left side of the board width
 	if (ballY < 0) {
 		ballPosY = -ballPosY;
+	
 	};
 }
 function draw() {
 	colorRect(0, 0, canvas.width, canvas.height, 'black');
-	//draw paddle
-	colorRect(0, paddleHeight, 10, paddleHeight, 'white');
+	//draw paddle player paddle
+	colorRect(0, playerPaddleY, paddleWidth, paddleHeight, 'white');
+	//draw paddle computer paddle
+	colorRect(canvas.width - paddleWidth, computerPaddleY, paddleWidth, paddleHeight, 'powderblue');
 	//draw circle
 	makeCircle(ballX, ballY, 7, 'yellow');
 	
@@ -88,21 +102,26 @@ function colorRect(leftX, topY, width, height, color) {
 	canvasContext.fillStyle = color;
 	canvasContext.fillRect(leftX, topY, width, height);
 };
-//move the paddle with mouse
+// //move the paddle with mouse
 function mousePosition (evt) {
 	//returns the size of the element and its position relative to the viewport
-	var board = canvas.getBoundingClientRect();
+	var grabBoard = canvas.getBoundingClientRect();
 	//get the html page
-	var root = document.documentElement;
+	var entirePage = document.documentElement;
 	//
-	var mouseX = evt.clientX - board.left - root.scrollLeft;
-	var mouseY = evt.clientY - board.top - root.scrollTop;
+	var mouseX = evt.clientX - grabBoard.left - entirePage.scrollLeft;
+	var mouseY = evt.clientY - grabBoard.top - entirePage.scrollTop;
 	return {
 		x: mouseX,
 		y: mouseY
 	};
-
-}
-
+};
+//function to reset the ball
+function resetBall () {
+	//after the ball hits the left side of the width, ball will change directions 
+	ballPosX = -ballPosX;
+	ballX = canvas.width / 2;
+	ballY = canvas.height / 2;
+};
 
 });
