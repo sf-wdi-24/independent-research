@@ -3,7 +3,8 @@ $(function() {
 
 	var canvasContext;
 	var canvas;
-	var ball = 50;
+	var ball = 10;
+	var ballSpeed = 20
 
 	// canvas = document.getElementById('newCanvas');
 	canvas = $('#newCanvas')[0];
@@ -26,7 +27,15 @@ $(function() {
 
 
 function move() {
-	ball = ball + 5
+	ball = ball + ballSpeed;
+	//if ball width exceeds the width of the canvas
+	if(ball > (canvas.width - 10)) {
+		ballSpeed = -ballSpeed;
+	}
+	//0 is the left side of the board width
+	if (ball < 0) {
+		ballSpeed = -ballSpeed;
+	};
 }
 function draw() {
 	canvasContext.fillStyle = 'black';
