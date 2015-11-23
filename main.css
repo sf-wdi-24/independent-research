@@ -19,8 +19,8 @@ body {
 
 .bar {
     background-color: black;
-    font-family: 'Rubik', sans-serif;
-    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 30px;
     color: white;
     -moz-user-select: none;
     -webkit-user-select: none;
