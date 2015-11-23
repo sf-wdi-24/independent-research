@@ -38,15 +38,15 @@ function move() {
 	};
 }
 function draw() {
-	canvasContext.fillStyle = 'black';
-	canvasContext.fillRect(0,0,canvas.width, canvas.height);
-	canvasContext.fillStyle = 'white';
-	canvasContext.fillRect(0, 40, 10, 90);
-	canvasContext.fillStyle = 'red';
-	canvasContext.fillRect(ball, 40, 10, 10);
+	colorRect(0, 0, canvas.width, canvas.height, 'black');
+	colorRect(0, 40, 10, 90, 'white');
+	colorRect(ball, 40, 10, 10, 'red');
 	};
 
-
+function colorRect(leftX, topY, width, height, color) {
+	canvasContext.fillStyle = color;
+	canvasContext.fillRect(leftX, topY, width, height);
+};
 
 
 
