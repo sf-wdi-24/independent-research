@@ -120,7 +120,7 @@ $(function(){
           console.log(data);
 
           var layout = {
-              title: 'SAFE Act Vote',
+              title: '',
               geo:{
                   scope: 'usa',
                   countrycolor: 'rgb(255, 255, 255)',
