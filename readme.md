@@ -2,6 +2,34 @@
 
 **Objective:** Research a **front-end library or technology** we haven't covered in class, and use it to build a portfolio project. The goal is to add an additional project to your GitHub that shows off your creativity and front-end development skills.
 
+## Project: three.js
+
+
+This was my first time trying out three.js, so my project consisted of a lot of trial and error. I had fun testing out different three.js properties in JSFiddle, and then implementing them into my project.
+
+Properties used:
+
+* Spotlight:
+	- Exponent
+	- Intensity
+
+* Pointlight:
+	- Intensity
+
+* MeshPhongMaterial:
+	- Opacity
+	- Transparent
+	- Spectacular
+	- Shininess
+	- Shading, flat shading
+
+* Side:
+	- Doubleside
+
+[Three.js project](http://jsfiddle.net/fek9ddg5/297/) Here's a link to my code on JSFiddle.
+
+
+
 ## Examples
 
 Here are a few popular libraries and technologies to you can consider using:
