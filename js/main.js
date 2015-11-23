@@ -37,7 +37,7 @@ $(function() {
 	$(canvas).on('mousemove', function (evt) {
 		var mousePos = mousePosition(evt);
 		//mousePos.y minus paddheight/2 makes it so the mouse pointer is at center
-		computerPaddleY = mousePos.y-(paddleHeight/2);
+		playerPaddleY = mousePos.y-(paddleHeight/2);
 	})
 
 
@@ -46,6 +46,7 @@ $(function() {
 
 
 function moveBall() {
+	computerMove();
 	//x and y coordiantes changes as set interval calls this function
 	ballX = ballX + ballPosX;
 	// console.log(ballX + 'x pos');
@@ -123,5 +124,14 @@ function resetBall () {
 	ballX = canvas.width / 2;
 	ballY = canvas.height / 2;
 };
+//computer chase the position
+function computerMove () {
+	//if ball is above paddle then move paddle up
+	if (computerPaddleY < ballY) {
+		computerPaddleY += 8;
+	} else {
+		computerPaddleY -= 8;
+	}
+}
 
 });
