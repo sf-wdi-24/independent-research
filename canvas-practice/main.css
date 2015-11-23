@@ -1,0 +1,62 @@
+.container{
+	width: 33%;
+	text-align: center;
+	display: inline-block;
+}
+
+.containerLeft{
+	width: 33%;
+	text-align: left;
+	display: inline-block;
+}
+
+.containerRight{
+	width: 33%;
+	text-align: right;
+	display: inline-block;
+}
+
+#canvasTest {
+	display: inline;
+	background-color: aqua;
+}
+
+#canvasTestBottom {
+	display: inline;
+	background-color: orange;
+}
+
+#canvasTestTop {
+	display: inline;
+	background-color: lightgrey;
+}
+
+#canvasTestLeft {
+	display: inline;
+	background-color: aqua;
+}
+
+#canvasTestBottomLeft {
+	display: inline;
+	background-color: orange;
+}
+
+#canvasTestTopLeft {
+	display: inline;
+	background-color: lightgrey;
+}
+
+#canvasTestRight {
+	display: inline;
+	background-color: aqua;
+}
+
+#canvasTestBottomRight {
+	display: inline;
+	background-color: orange;
+}
+
+#canvasTestTopRight {
+	display: inline;
+	background-color: lightgrey;
+}
