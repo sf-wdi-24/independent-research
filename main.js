@@ -14,11 +14,11 @@ $(function() {
 
     for (var i = 0; i < 10; i++) {
       //asign data to each div (card)
-      $("<div>" + numbers[i] + "</div>").data({
+      $("<div class='ui-widget-content'>" + numbers[i] + "</div>").data({
         number: numbers[i]
       }).attr("id", "card" + numbers[i]).appendTo("#cardHolder").draggable({
         revert: true
-      });
+      }).draggable( "option", "cursorAt", { left: 25 } );
     }
 
     var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
@@ -43,15 +43,11 @@ $(function() {
     var cardNumber = ui.draggable.data("number");
 
     if (slotNumber == cardNumber) {
-      ui.draggable.addClass("correct");
-      ui.draggable.draggable("disable");
-      $(this).droppable("disbale");
-      ui.draggable.position({
-        my: "left top",
-        at: "left top",
-        of: $(this)
-      });
-      ui.draggable.draggable({revert : false});
+      ui.draggable.addClass( 'correct' );
+    ui.draggable.draggable( 'disable' );
+    $(this).droppable( 'disable' );
+    ui.draggable.position( { my: 'left top', at: 'left top', of: $(this) } );
+    ui.draggable.draggable( 'option', 'revert', false );
       correctCards++;
     }
 
