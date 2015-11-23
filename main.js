@@ -22,36 +22,47 @@ camera = new THREE.PerspectiveCamera( 45, CANVAS_WIDTH / CANVAS_HEIGHT, 1, 1000 
 camera.position.x = 600;
 camera.position.y = 100;
 camera.position.z = 600;
-camera.lookAt( {x: 0, y: 100, z: 0} );
+camera.lookAt( {x: 0, y: 150, z: 0} );
 scene.add( camera );
 
 scene.add( new THREE.AmbientLight( 0x222222 ) );
 
 var lampHeight = 300;
+var lampshadeHeight = 125;
 
 var spotLight = new THREE.SpotLight( 0xffffff );
-spotLight.position.set( 100, 300, 100 );
+spotLight.position.set( 100, lampHeight + lampshadeHeight, 100 );
+spotLight.exponent = 6;
+spotLight.intensity = 0;
 scene.add( spotLight );
+
+var spotLightFacingUp = new THREE.SpotLight( 0xffffff );
+spotLightFacingUp.position.set( 100, lampHeight + lampshadeHeight + 1, 100 );
+spotLightFacingUp.target = new THREE.Object3D(0, lampHeight + lampshadeHeight + 10, 0);
+spotLightFacingUp.intensity = 0;
+scene.add( spotLightFacingUp );
 
 
 //var pointLightRight = new THREE.PointLight( 0xffffff, 1 );
-    //pointLightRight.position.x = 50;
-    //pointLightRight.position.y = lampHeight;
-    //pointLightRight.position.z = 0;
-//scene.add( pointLightRight );
+      //pointLightRight.position.x = 50;
+      //pointLightRight.position.y = lampHeight;
+      //pointLightRight.position.z = 0;
+    //pointLightRight.intensity = 0;
+////scene.add( pointLightRight );
 
 //var pointLightLeft = new THREE.PointLight( 0xffffff, 1 );
     //pointLightLeft.position.x = -50;
     //pointLightLeft.position.y = lampHeight;
     //pointLightLeft.position.z = 0;
-//scene.add( pointLightLeft ); 
+    //pointLightLeft.intensity = 0;
+//scene.add( pointLightLeft );
 
 
 var lampshadeMaterial = new THREE.MeshPhongMaterial( { color : 0xFFD800 } ); 
 lampshadeMaterial.opacity = 0.6;
 lampshadeMaterial.transparent = true;
 lampshade = new THREE.Mesh( 
-    new THREE.CylinderGeometry( 70, 90, 125, 32, 1, true ),
+    new THREE.CylinderGeometry( 70, 90, lampshadeHeight, 32, 1, true ),
     lampshadeMaterial
  );
 
@@ -83,7 +94,7 @@ scene.add( base );
 objects.push( base );
 
 tabletop = new THREE.Mesh(
-            new THREE.BoxGeometry( 600, 400, 600 ),
+            new THREE.BoxGeometry( 700, 400, 700 ),
             new THREE.MeshPhongMaterial( {color: 0x4679BD, side: THREE.DoubleSide}
 ) );
 tabletop.position.x = 300;
@@ -114,10 +125,16 @@ document.addEventListener( 'mousedown', function( event ) {
 
     if ( intersects.length > 0 ) {
 
-            if (spotLight.intensity === 0) {
+            if (spotLight.intensity === 0 && spotLightFacingUp.intensity === 0) {
                 spotLight.intensity = 1;
+                spotLightFacingUp.intensity = 1;
+                pointLightRight.intensity = 1;
+                pointLightLeft.intensity = 1;
             } else {
                 spotLight.intensity = 0;
+                spotLightFacingUp.intensity = 0;
+                pointLightRight.intensity = 0;
+                pointLightLeft.intensity = 0;
             }
         
     }
@@ -138,4 +155,5 @@ function render() {
     render();
 
 })();
+
 

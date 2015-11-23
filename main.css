@@ -17,3 +17,8 @@ body {
     top: 100px;
     left: 100px;
 }
+
+#bar {
+    background-color: black;
+    padding-bottom: 10px;
+}
