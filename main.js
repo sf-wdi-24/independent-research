@@ -20,7 +20,7 @@ scene = new THREE.Scene();
 
 camera = new THREE.PerspectiveCamera( 45, CANVAS_WIDTH / CANVAS_HEIGHT, 1, 1000 );
 camera.position.x = 600;
-camera.position.y = 100;
+camera.position.y = 200;
 camera.position.z = 600;
 camera.lookAt( {x: 0, y: 150, z: 0} );
 scene.add( camera );
@@ -42,21 +42,12 @@ spotLightFacingUp.target = new THREE.Object3D(0, lampHeight + lampshadeHeight + 
 spotLightFacingUp.intensity = 0;
 scene.add( spotLightFacingUp );
 
-
-//var pointLightRight = new THREE.PointLight( 0xffffff, 1 );
-      //pointLightRight.position.x = 50;
-      //pointLightRight.position.y = lampHeight;
-      //pointLightRight.position.z = 0;
-    //pointLightRight.intensity = 0;
-////scene.add( pointLightRight );
-
-//var pointLightLeft = new THREE.PointLight( 0xffffff, 1 );
-    //pointLightLeft.position.x = -50;
-    //pointLightLeft.position.y = lampHeight;
-    //pointLightLeft.position.z = 0;
-    //pointLightLeft.intensity = 0;
-//scene.add( pointLightLeft );
-
+var pointLightRight = new THREE.PointLight( 0xffffff, 1 );
+      pointLightRight.position.x = 50;
+      pointLightRight.position.y = lampHeight;
+      pointLightRight.position.z = 0;
+    pointLightRight.intensity = 0;
+scene.add( pointLightRight );
 
 var lampshadeMaterial = new THREE.MeshPhongMaterial( { color : 0xFFD800 } ); 
 lampshadeMaterial.opacity = 0.6;
@@ -85,8 +76,7 @@ objects.push( lamppost );
 
 base = new THREE.Mesh(
     new THREE.CylinderGeometry( 80, 80, 80, 32, 1 ),
-    new THREE.MeshPhongMaterial( { color : 0xE45537 }
-) );
+    new THREE.MeshPhongMaterial( { color: 0xdddddd, specular: 0x009900, shininess: 30, shading: THREE.FlatShading } ) );
 base.position.x = 0;
 base.position.y = 8;
 base.position.z = 0;
@@ -130,11 +120,13 @@ document.addEventListener( 'mousedown', function( event ) {
                 spotLightFacingUp.intensity = 1;
                 pointLightRight.intensity = 1;
                 pointLightLeft.intensity = 1;
+                lampshadeMaterial.emissive = 0x808030;
             } else {
                 spotLight.intensity = 0;
                 spotLightFacingUp.intensity = 0;
                 pointLightRight.intensity = 0;
                 pointLightLeft.intensity = 0;
+                lampshadeMaterial.emissive = 0x505010;
             }
         
     }
@@ -155,5 +147,7 @@ function render() {
     render();
 
 })();
+
+
 
 
