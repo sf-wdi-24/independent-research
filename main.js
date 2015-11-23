@@ -2,10 +2,9 @@ $(function() {
 	//loading before play is clicked
 	$('#shoot').hide();
 
-
-
 $('#reset').click(function(event){
-			$('#reset').text("Reset").removeClass("btn-warning").addClass("btn-success");
+			$('#reset').text("Reset");
+			$('#reset').hide();
 			$('#shoot').show();
 	Physics(function(world){
 
@@ -74,6 +73,19 @@ $('#reset').click(function(event){
 			mass: 0.9
 		});
 
+		function createBasketball(){
+			var basketball = Physics.body('circle', {
+				x: 72,
+				y: 400,
+				radius: 13,
+				restitution: 0.5,
+				mass: 0.8
+			});
+			basketball.view = new Image();
+			basketball.view.src = ('basketball.png');
+			world.add(basketball);
+		}
+
 		var backboard = Physics.body('rectangle', {
 			x: 900,
 			y: 200,
@@ -82,17 +94,26 @@ $('#reset').click(function(event){
 			treatment: 'static',
 			hidden: true
 		});
-
+		var rim = Physics.body('convex-polygon', {
+			x: 805,
+			y: 275,
+			treatment: 'static',
+			vertices: [
+				{x:-10, y: 0},
+				{x:10, y: 55}
+			]
+		});
 		var rimLeft = Physics.body('rectangle', {
 			x: 800,
-			y: 400,
+			y: 300,
 			width: 1,
-			height: 300,
+			height: 100,
 			treatment: 'static',
+			rotation: 270,
 			hidden: true
 		});
 		// set boundaries on world
-		var bounds = Physics.aabb(0,0,2000,1000);
+		var bounds = Physics.aabb(0,0,1000,635);
 
 		// add gravity
 		world.add(Physics.behavior('constant-acceleration'));
@@ -100,13 +121,11 @@ $('#reset').click(function(event){
 		// set objects to sense edge of world
 		world.add( Physics.behavior('edge-collision-detection', {
 			aabb: bounds,
-			restitution: 0
+			restitution: 0.4
 		}));
 
-
-		world.add(rimLeft);
+		world.add(rim);
 		world.add(backboard);
-		world.add(projectile);
 		world.add(rectangle);
 		world.add(triangle);
 		world.add(helperBox);
@@ -131,6 +150,9 @@ $('#reset').click(function(event){
 
 		$('#shoot').click(function(event){
 		world.add(fallingBox);
+		createBasketball();
+		$('#reset').show();
+		$('#shoot').hide();
 		});
 
 		world.render();
