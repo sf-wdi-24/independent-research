@@ -4,7 +4,8 @@ $(function() {
 	var canvasContext;
 	var canvas;
 
-
+	var playerScore = 0,
+			computerScore = 0;
 	//ball x and y positions
 	var ballX = 10;
 	var ballPosX = 10;
@@ -13,7 +14,7 @@ $(function() {
 
 	//paddle variables
 	var playerPaddleY = 230;
-	var computerPaddleY = 10;
+	var computerPaddleY = 230;
 	var paddleWidth = 10;
 
 	//set paddle height
@@ -48,9 +49,9 @@ $(function() {
 function moveBall() {
 	computerMove();
 	//x and y coordiantes changes as set interval calls this function
-	ballX = ballX + ballPosX;
+	ballX += ballPosX;
 	// console.log(ballX + 'x pos');
-	ballY = ballY + ballPosY;
+	ballY += ballPosY;
 	// console.log(ballY + 'y pos')
 
 	//if ball width exceeds the width of the canvas
@@ -59,6 +60,7 @@ function moveBall() {
 			ballPosX = -ballPosX;
 		}else{
 			resetBall();
+			playerScore++;
 		}
 	}
 	//0 is the left side of the board width
@@ -66,7 +68,8 @@ function moveBall() {
 		if (ballY > playerPaddleY && ballY < playerPaddleY+paddleHeight ) {
 			ballPosX = -ballPosX;
 		}else {
-			resetBall();	
+			resetBall();
+			computerScore++;	
 		}
 	};
 	//if ballY height exceeds the height of the canvas
@@ -87,6 +90,11 @@ function draw() {
 	colorRect(canvas.width - paddleWidth, computerPaddleY, paddleWidth, paddleHeight, 'powderblue');
 	//draw circle
 	makeCircle(ballX, ballY, 7, 'yellow');
+
+	canvasContext.fillText(playerScore, 100, 100);
+	canvasContext.fillText(computerScore, canvas.width - 100, 100);
+
+
 	
 	};
 
@@ -126,8 +134,10 @@ function resetBall () {
 };
 //computer chase the position
 function computerMove () {
+	//have the paddle track from the center 
+	var centerComputer = computerPaddleY + (paddleHeight/2)
 	//if ball is above paddle then move paddle up
-	if (computerPaddleY < ballY) {
+	if (centerComputer < ballY) {
 		computerPaddleY += 8;
 	} else {
 		computerPaddleY -= 8;
