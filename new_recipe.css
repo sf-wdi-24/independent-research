@@ -1,0 +1,61 @@
+body{
+	background: url("http://www.mickshippen.com/wp-content/gallery/blog-images/IMG_5835.jpg");
+	background-size: cover;
+/*	background-position: fixed;
+	overflow-y: scroll;*/
+}
+#newDish{
+	position: right;
+	float:right;
+}
+#menu{
+	float:left;
+}
+.btn{
+	margin: 8px;
+}
+a{
+	color: white;
+}
+#submitRecipe{
+	background-image: url("http://tulleeho.com/wp-content/uploads/2014/10/submit-your-recipe.png");
+	background-size: cover;
+	width: 200px;
+	height: 70px;  
+}
+#form{
+	background-color: rgba(214, 211, 211, 0.4);
+	padding: 10px 50px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #eee;
+  margin: 1px;
+  padding: 5px 10px;
+}
+
+.sortable-ghost {
+  opacity: .6;
+}
+.item{
+	margin: 5px 0px;
+}
+#listTitle{
+	color: white;
+}
+.rowItem{
+	margin: 10px 0px;
+}
+#recipe{
+	color: white;
+}
+.newIngredient{
+	background-color: rgba(214, 211, 211, 0.6);	
+}
+#submitRecipe{
+	margin: 0px 180px;
+}

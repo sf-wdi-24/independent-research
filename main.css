@@ -1,0 +1,49 @@
+body{
+	background-image: url("http://www.platetoplate.com/wp/wp-content/uploads/2011/07/DSC_2683-580x383.jpg");
+    background-size: cover;
+}
+
+#mainTitle{
+margin: 10px, 0px;
+}
+.cookType{
+	padding: 100px 200px;
+	background-color: rgba(148, 141, 141, 0.7);
+	margin: 150px 0px;
+}
+#listDiv{
+	display: inline;
+}
+aside[id*="-control"] .slidr-control:after {
+  border-color: transparent !important;   
+}
+#newDish{
+	position: right;
+	float:right;
+}
+#menu{
+	float:left;
+}
+.btn{
+	margin: 8px;
+}
+a{
+	color: white;
+	text-decoration: none;
+}
+#breakfast{
+	background-image: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSWykXSCgwWAtPAp4PEG7V2gYuM_gy0dmCHWoRr0e_F9XNhaBUN8w");
+	background-size: 100%;
+}
+#lunch{
+
+	background-image: url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTgCPaE83sliI0G7HsuA-GNO13v4-dPd2k2cQ9eGvyW_yyQY3RN");
+	background-size: 100%;
+}
+#dinner{
+	background-image: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTd3B0ZruFdPt6Axi3tqO5Nu-zTfVXsTTjCvPOd_KXSsIQEFNlp");
+	background-size: 100%;
+}
+.topic{
+	font-size: 30px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- bootstrap css -->
+  	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<!-- custom styles -->
+	<link rel="stylesheet" type="text/css" href="main.css">
+
+	<title>Coockin- Homepage</title>
+</head>
+<body>
+	<div class="container-full">
+
+		<!-- navbar -->
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      	<a class="navbar-brand" href="index.html">Cooking</a>
+		    </div>
+			<div id="menu">
+			  	<button class="btn btn-primary" id="breakfastLeast"><a href="breakfast.html">Breakfast</a></button>
+			    <button class="btn btn-primary" id="lunchLeast"><a href="lunch.html">Lunch</a></button>
+			    <button class="btn btn-primary" id="dinnerLeast"><a href="dinner.html">Dinner</a></button>
+			</div>
+		    <div id="newDish">
+		   		 <button class="btn btn-primary" id="newRecipe"><a href="/new_recipe.html">Add A New Recipe</a></button>
+			</div>
+		  </div>
+		</nav>
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center"><h1 id="mainTitle">What Would You Like To Cook<h1></div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<div id="listDiv">				
+	  				<div data-slidr="one" class="cookType" id="breakfast"><a href="breakfast.html" class="topic">Breakfast</a></div>
+					<div data-slidr="two" class="cookType" id="lunch"><a href="lunch.html" class="topic">Lunch</a></div>
+					<div data-slidr="three" class="cookType" id="dinner"><a href="dinner.html" class="topic">Dinner</a></div>
+	  			</div>
+			</div>
+	</div>
+		<div class="row"></div>
+	</div>
+	<!-- jquery -->
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  	<!-- slidr.js -->
+ 	<script type="text/javascript" src="/Users/zoharmuzafi/develop/slidr/slidr.min.js"></script>
+	<!-- custom script -->
+	<script type="text/javascript" src="main.js"></script>
+	<!-- handlebars -->
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+  	<!-- bootstrap js -->
+ 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Coocking-Breakfast</title>
+	<!-- bootstrap css -->
+  	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<!-- custom styles -->
+	<link rel="stylesheet" type="text/css" href="breakfast.css">
+</head>
+<body>
+	<div class="container-full">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- navbar -->
+				<nav class="navbar navbar-default">
+				  <div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <div class="navbar-header">
+				      	<a class="navbar-brand" href="index.html">Cooking</a>
+				    </div>
+					<div id="menu">
+					  	<button class="btn btn-primary" id="breakfastLeast"><a href="breakfast.html">Breakfast</a></button>
+					    <button class="btn btn-primary" id="lunchLeast"><a href="lunch.html">Lunch</a></button>
+					    <button class="btn btn-primary" id="dinnerLeast"><a href="dinner.html">Dinner</a></button>
+					</div>
+				    <div id="newDish">
+				   		 <button class="btn btn-primary" id="newRecipe"><a href="new_recipe.html">Add A New Recipe</a></button>
+					</div>
+				  </div>
+				</nav>
+			</div>
+		</div>
+		
+		 <div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<h1 id="lunchTitle">Breakfast Recipe<h1>
+			</div>
+		</div>
+		
+				<script id= "listOfRecipes" type="text/x-hendlebars-template">
+					{{#each recipes}}
+						<div class="row rowRecipe">
+							<div class="col-md-6 col-md-offset-3 singleRecipe">
+								<div class="row">
+									<div class="col-md-10 col-md-offset-1">
+										<h4 class="text-left">{{name}} for {{numberOfPeople}}</h5>
+										<img src = {{image}}><hr>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-10 col-md-offset-1 ingredientsList" id="ingredients{{name}}">
+										<h5>Ingredients:</h5>
+											{{#each ingredients}}
+												<p>{{quantity}}  {{measure}}  {{item}}</p>
+											{{/each}}
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-10 col-md-offset-1">
+										<h5>How To Cook:</h5>
+										<article id="art"{{name}}>{{instructions}}</article>
+									</div>
+								</div>
+								<div class="row simpleCart_shelfItem">
+									<div class="col-md-6 col-md-offset-4">
+									 <h2 class="item_name itemToCook"> {{name}} </h2>
+									 <p>  <input type="text" value="1" class="item_Quantity"><br>
+									 	<span class="item_price">$35.99</span><br>
+									</p>
+										<a href="javascript:;" class="simpleCart_checkout"><button class="btn btn-primary buyItNow" id={{name}}>I Want To Cook It</button></a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					{{/each}}
+				</script>
+		
+	</div>
+
+	
+	<!-- handlebars -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+	<!-- jquery -->
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<!-- custom script -->
+	<!-- <script type="text/javascript" src="lunch.js"></script> -->
+  	<!-- bootstrap js -->
+ 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 	<!-- Sortable -->
+ 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+ 	<!-- slidr.js -->
+ 	<script type="text/javascript" src="/Users/zoharmuzafi/develop/slidr/slidr.min.js"></script>
+ 	<!-- simple cart -->
+ 	<script src="simpleCart.js"></script>
+
+</body>
+</html>
