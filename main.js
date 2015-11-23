@@ -17,6 +17,10 @@ $(function() {
 			$horizontalSlide = $('#horizontal-slide'),
 			$verticalSlide = $('#vertical-slide'),
 			$translationSubmit = $('#translation-submit'),
+			$overX = $('#over-x'),
+			$overY = $('#over-y'),
+			$over45 = $('#over45'),
+			$overNeg45 = $('#over-45'),
 			$coordinateax = $('.ax'),
 			$coordinateay = $('.ay'),
 			$coordinatebx = $('.bx'),
@@ -54,6 +58,10 @@ $(function() {
 	$reflectionBtn.on('click', reflection);
 	$rotationBtn.on('click', rotation);
 	$translationSubmit.on('click', computeTranslation);
+	$overX.on('click', reflectX);
+	$overY.on('click', reflectY);
+	$over45.on('click', reflect45);
+	$overNeg45.on('click', reflectNeg45);
 
 	// Store height and width and set the canvas	
 	var width = $canvas.width();
@@ -170,6 +178,74 @@ $(function() {
 		$reflection.toggle();
 	}
 
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a reflection over the x-axis.  Then calls function
+	// to render triangle DEF and show the new coordinates
+	function reflectX() {
+		event.preventDefault();
+		triangleDEF.dx = triangleABC.ax;
+		triangleDEF.dy = -1 * triangleABC.ay;
+		triangleDEF.ex = triangleABC.bx;
+		triangleDEF.ey = -1 * triangleABC.by;
+		triangleDEF.fx = triangleABC.cx;
+		triangleDEF.fy = -1 * triangleABC.cy;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
+	}
+
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a reflection over the y-axis.  Then calls function
+	// to render triangle DEF and show the new coordinates
+	function reflectY() {
+		event.preventDefault();
+		triangleDEF.dx = -1 * triangleABC.ax;
+		triangleDEF.dy = triangleABC.ay;
+		triangleDEF.ex = -1 * triangleABC.bx;
+		triangleDEF.ey = triangleABC.by;
+		triangleDEF.fx = -1 * triangleABC.cx;
+		triangleDEF.fy = triangleABC.cy;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
+	}
+
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a reflection over the line y=x (45 degrees).  Then calls
+	// function to render triangle DEF and show the new coordinates
+	function reflect45() {
+		event.preventDefault();
+		triangleDEF.dx = triangleABC.ay;
+		triangleDEF.dy = triangleABC.ax;
+		triangleDEF.ex = triangleABC.by;
+		triangleDEF.ey = triangleABC.bx;
+		triangleDEF.fx = triangleABC.cy;
+		triangleDEF.fy = triangleABC.cx;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
+	}
+
+	// Takes the coordinates for triangle ABC and calculates the coordinates for
+	// triangle DEF using a reflection over the line y=-x (-45 degrees).  Then 
+	// calls function to render triangle DEF and show the new coordinates
+	function reflectNeg45() {
+		event.preventDefault();
+		triangleDEF.dx = -1 * triangleABC.ay;
+		triangleDEF.dy = -1 * triangleABC.ax;
+		triangleDEF.ex = -1 * triangleABC.by;
+		triangleDEF.ey = -1 * triangleABC.bx;
+		triangleDEF.fx = -1 * triangleABC.cy;
+		triangleDEF.fy = -1 * triangleABC.cx;
+		console.log(triangleDEF);
+		renderTriangleDEF();
+		insertNewPoints();
+		$newTriangle.toggle();		
+	}
+
 	// On click, changes the background and toggles the rotations window
 	function rotation() {
 		event.preventDefault();
@@ -221,14 +297,17 @@ $(function() {
 	// Adds triangle DEF to the grid
 	function renderTriangleDEF() {
 		var triDEF = new THREE.Geometry();
+		console.log(triDEF);
 		// Define the vertices
 		var vertexD = new THREE.Vector3(triangleDEF.dx, triangleDEF.dy, 0);
 		var vertexE = new THREE.Vector3(triangleDEF.ex, triangleDEF.ey, 0);
 		var vertexF = new THREE.Vector3(triangleDEF.fx, triangleDEF.fy, 0);
+		console.log(vertexD, vertexE, vertexF);
 		// Push the vertices to the triangle
 		triDEF.vertices.push(vertexD);
 		triDEF.vertices.push(vertexE);
 		triDEF.vertices.push(vertexF);
+		console.log(triDEF);
 		// Create the face
 		triDEF.faces.push( new THREE.Face3(0,1,2));
 		triDEF.computeFaceNormals();
