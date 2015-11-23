@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PhysicsJS Testing</title>
+	<!-- Bootstrap CSS -->
+	<link type = "text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel = "stylesheet" href="main.css">
+	<link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="header text-center">	
+				<button id="shoot" class="btn pull-left">Shoot</button>
+				<button id="reset" class="btn pull-left">Begin</button>
+				<h1>Bird...for three</h1>
+			</div>
+			<div class="canvasViewport">
+				<canvas id="viewport" width="1000" height="625"></canvas>	
+				<img src="backboard.png" class="backboard">
+				<img src="legend.png" class="legend">
+			</div> <!-- end of canvasViewport div -->	
+		</div> <!-- end of row div -->
+	</div> <!-- end of div container -->
+	<!-- jquery -->
+	  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<!-- physicsJS -->
+	<script type="text/javascript" src="physicsjs-full.js"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
