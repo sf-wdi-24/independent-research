@@ -13,10 +13,10 @@ $(function(){
   var state = '';
   var vote = '';
   var lastname = '';
-  var aye_votes = '';
-  var no_votes = '';
-  var abstain_votes = '';
-  var total_votes = '';
+  var all_votes = [];
+
+  // var source = $('#votes-template').html(); // loads the html from .hbs
+  // var template = Handlebars.compile(source);
 
   $.get('https://www.govtrack.us/api/v2/vote_voter?vote=117985&limit=600', function(dataobject){
         
@@ -57,10 +57,11 @@ $(function(){
             }
 
           }
-          aye_votes = sum(state_count_aye_data);
-          no_votes = sum(state_count_no_data);
-          abstain_votes = sum(state_count_obs_data);
-          total_votes = sum(state_count_tot_data);
+          all_votes.push(sum(state_count_aye_data));
+          all_votes.push(sum(state_count_no_data));
+          all_votes.push(sum(state_count_obs_data));
+          all_votes.push(sum(state_count_tot_data));
+
           console.log('end setupArrays function');
           callback();
         }
@@ -70,7 +71,6 @@ $(function(){
           for (var key in new_data) {
             if (new_data.hasOwnProperty(key)) {
               locations_array.push(key);
-              //z_array.push(new_data[key]);
             }
           }
           for (var key2 in congressman_data) {
@@ -102,7 +102,7 @@ $(function(){
           callback();
         }
         
-        function dataMap(){
+        function dataMap(callback){
           console.log('started dataMap function');
           var data = [{
                   type: 'choropleth',
@@ -135,46 +135,23 @@ $(function(){
           };
           Plotly.plot(usMap, data, layout, {showLink: false});
           console.log('ended mapData function');
+          callback();
         }
 
         setupArrays(function(){
           createArrays(function(){
-            dataMap();
+            dataMap(function(){
+              //var votesHtml = template({vote: all_votes});
+              //$('#votes_list').append(votesHtml);
+              console.log(all_votes[0]);
+              $('#votes_list_a').append(all_votes[0]);
+              $('#votes_list_b').append(all_votes[1]);
+              $('#votes_list_c').append(all_votes[2]);
+              $('#votes_list_d').append(all_votes[3]);
+            });
           });
         });
   });
-
-  // Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_usa_states.csv', function(err, rows){
-  //       function unpack(rows, key) {
-  //           return rows.map(function(row) { return row[key]; });
-  //       }
-
-  //       var data = [{
-  //               type: 'choropleth',
-  //               locationmode: 'USA-states',
-  //               locations: unpack(rows, 'postal'),
-  //               z: unpack(rows, 'pop'),
-  //               text: unpack(rows, 'state'),
-  //               autocolorscale: true
-  //       }];
-  //       console.log(data);
-
-
-  //       var layout = {
-  //           title: '',
-  //           geo:{
-  //               scope: 'usa',
-  //               countrycolor: 'rgb(255, 255, 255)',
-  //               showland: true,
-  //               landcolor: 'rgb(217, 217, 217)',
-  //               showlakes: true,
-  //               lakecolor: 'rgb(255, 255, 255)',
-  //               subunitcolor: 'rgb(255, 255, 255)',
-  //               lonaxis: {},
-  //               lataxis: {}
-  //           }
-  //       };
-  //       Plotly.plot(usMap, data, layout, {showLink: false});
-  // });
+  
 
 });
