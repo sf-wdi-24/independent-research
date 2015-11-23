@@ -1,5 +1,4 @@
 body {
-    font-family: Monospace;
     background-color: #fff;
     margin: 0px;
     overflow: hidden;
@@ -18,7 +17,13 @@ body {
     left: 100px;
 }
 
-#bar {
+.bar {
     background-color: black;
-    padding-bottom: 10px;
+    font-family: 'Rubik', sans-serif;
+    padding: 15px 30px;
+    color: white;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
+
