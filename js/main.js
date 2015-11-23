@@ -85,19 +85,26 @@ function moveBall() {
 function draw() {
 	colorRect(0, 0, canvas.width, canvas.height, 'black');
 	//draw paddle player paddle
-	colorRect(0, playerPaddleY, paddleWidth, paddleHeight, 'white');
+	colorRect(0, playerPaddleY, paddleWidth, paddleHeight, '#FF0066');
 	//draw paddle computer paddle
-	colorRect(canvas.width - paddleWidth, computerPaddleY, paddleWidth, paddleHeight, 'powderblue');
+	colorRect(canvas.width - paddleWidth, computerPaddleY, paddleWidth, paddleHeight, '#ccff00');
 	//draw circle
-	makeCircle(ballX, ballY, 7, 'yellow');
-
+	makeCircle(ballX, ballY, 5, 'white');
+	centerLine();
+	canvasContext.font = '50pt';
+	canvasContext.fillText('Score', 90,90);
+	canvasContext.fillText('Score', canvas.width-110,90);
 	canvasContext.fillText(playerScore, 100, 100);
 	canvasContext.fillText(computerScore, canvas.width - 100, 100);
 
 
 	
 	};
-
+function centerLine() {
+	for(i = 0; i < canvas.height; i+=30) {
+		colorRect(canvas.width/2-1, i, 2, 20, 'white' );
+	}
+}
 function makeCircle(centerX, centerY, radius, color) {
 	//build the circle
 	canvasContext.fillStyle = color;
