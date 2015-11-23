@@ -24,10 +24,10 @@ $(function() {
     temp.sort(function () {
       return 0.5 - Math.random();
     });
-    for ( var i=1; i<=10; i++ ) {
+    for ( var j=1; j<=10; j++ ) {
       //words.indexOf(temp[i-1]) + 1 >> slot card number displayed randomly, take random slot number
       //then check with words array to get the acutal data for the slot.
-      $("<div>" + temp[i-1] + "</div>").data( {number: words.indexOf(temp[i-1]) + 1} ).appendTo( "#slotHolder" ).droppable( {
+      $("<div>" + temp[j-1] + "</div>").data( {number: words.indexOf(temp[j-1]) + 1} ).appendTo( "#slotHolder" ).droppable( {
         accept: "#cardHolder div",
         drop: checkCardtoBeDrop
       } );
