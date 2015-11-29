@@ -82,8 +82,20 @@ $(function() {
 	scene = new THREE.Scene();
 
 	// Add axes using functions defined below
-	axes = buildAxes( 10 );
+	axes = buildAxes(10);
 	scene.add( axes );
+
+	// var triangle = new THREE.Geometry();
+	// var vertex1 = new THREE.Vector3(1, 1, 0);
+	// var vertex2 = new THREE.Vector3(3, 3, 0);
+	// var vertex3 = new THREE.Vector3(5, 1, 0);
+	// triangle.vertices.push(vertex1);
+	// triangle.vertices.push(vertex2);
+	// triangle.vertices.push(vertex3);
+	// triangle.faces.push( new THREE.Face3(0,2,1));
+	// triangle.computeFaceNormals();
+	// var mesh = new THREE.Mesh(triangle, new THREE.MeshNormalMaterial());
+	// scene.add(mesh);
 
 	// Set the camera above the axes
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -91,14 +103,14 @@ $(function() {
 	camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
 
 	// // Controls to move the camera (Disabled)
-	// controls = new THREE.TrackballControls( camera );
-	// controls.rotateSpeed = 1.0;
-	// controls.zoomSpeed = 0.2;
-	// controls.panSpeed = 0.8;
-	// controls.noZoom = false;
-	// controls.noPan = false;
-	// controls.staticMoving = true;
-	// controls.dynamicDampingFactor = 0.3;
+	controls = new THREE.TrackballControls( camera );
+	controls.rotateSpeed = 1.0;
+	controls.zoomSpeed = 0.2;
+	controls.panSpeed = 0.8;
+	controls.noZoom = false;
+	controls.noPan = false;
+	controls.staticMoving = true;
+	controls.dynamicDampingFactor = 0.3;
 
 	// Animate
 	animate();
@@ -106,7 +118,7 @@ $(function() {
 	// Animates the scene
 	function animate() {
 		requestAnimationFrame( animate );
-		// controls.update();
+		controls.update();
 		renderer.render( scene, camera );
 	}
 
@@ -195,7 +207,7 @@ $(function() {
 		triangleDEF.ey = -1 * triangleABC.by;
 		triangleDEF.fx = triangleABC.cx;
 		triangleDEF.fy = -1 * triangleABC.cy;
-		console.log(triangleDEF);
+		console.log('ABC', triangleABC, 'DEF', triangleDEF);
 		renderTriangleDEF();
 		insertNewPoints();
 		$newTriangle.toggle();		
@@ -345,6 +357,7 @@ $(function() {
 		triABC.vertices.push(vertexC);
 		// Create the face
 		triABC.faces.push( new THREE.Face3(0,1,2));
+		triABC.faces.push( new THREE.Face3(0,2,1));
 		triABC.computeFaceNormals();
 		// Give the triangle a mesh and add it to the scene
 		var mesh = new THREE.Mesh( triABC, new THREE.MeshNormalMaterial() );
@@ -354,7 +367,6 @@ $(function() {
 	// Adds triangle DEF to the grid
 	function renderTriangleDEF() {
 		var triDEF = new THREE.Geometry();
-		console.log(triDEF);
 		// Define the vertices
 		var vertexD = new THREE.Vector3(triangleDEF.dx, triangleDEF.dy, 0);
 		var vertexE = new THREE.Vector3(triangleDEF.ex, triangleDEF.ey, 0);
@@ -367,10 +379,12 @@ $(function() {
 		console.log(triDEF);
 		// Create the face
 		triDEF.faces.push( new THREE.Face3(0,1,2));
+		triDEF.faces.push( new THREE.Face3(0,2,1));
 		triDEF.computeFaceNormals();
 		// Give the triangle a mesh and add it to the scene
-		var mesh2 = new THREE.Mesh( triDEF, new THREE.MeshNormalMaterial() );
-		scene.add(mesh2);
+		var mesh = new THREE.Mesh( triDEF, new THREE.MeshNormalMaterial() );
+		scene.add(mesh);
+		console.log(scene);
 	}
 
 	// Clears the coordinates out of the boxes to be reused
