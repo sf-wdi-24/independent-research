@@ -38,6 +38,7 @@ body {
  
 #cardHolder div:hover {
   background: black;
+  cursor: move;
 }
  
 #slotHolder div {

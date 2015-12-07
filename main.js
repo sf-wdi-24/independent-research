@@ -16,9 +16,7 @@ $(function() {
       //asign data to each div (card)
       $("<div class='ui-widget-content'>" + numbers[i] + "</div>").data({
         number: numbers[i]
-      }).attr("id", "card" + numbers[i]).appendTo("#cardHolder").draggable({
-        revert: true
-      }).draggable( "option", "cursorAt", { left: 25 } );
+      }).attr("id", "card" + numbers[i]).appendTo("#cardHolder").draggable({revert: true});
     }
 
     var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
@@ -33,6 +31,7 @@ $(function() {
         number: words.indexOf(temp[i - 1]) + 1
       }).appendTo("#slotHolder").droppable({
         accept: "#cardHolder div",
+        hoverClass: "hovered",
         drop: checkCardtoBeDrop
       });
     }
@@ -42,12 +41,12 @@ $(function() {
     var slotNumber = $(this).data("number");
     var cardNumber = ui.draggable.data("number");
 
-    if (slotNumber == cardNumber) {
-      ui.draggable.addClass( 'correct' );
-    ui.draggable.draggable( 'disable' );
-    $(this).droppable( 'disable' );
-    ui.draggable.position( { my: 'left top', at: 'left top', of: $(this) } );
-    ui.draggable.draggable( 'option', 'revert', false );
+    if (slotNumber === cardNumber) {
+      ui.draggable.addClass("correct");
+      ui.draggable.draggable("disable");
+      $(this).droppable("disable");
+      ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+      ui.draggable.draggable("option", "revert", false);
       correctCards++;
     }
 
