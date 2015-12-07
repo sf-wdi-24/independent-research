@@ -16,7 +16,12 @@ $(function() {
       //asign data to each div (card)
       $("<div class='ui-widget-content'>" + numbers[i] + "</div>").data({
         number: numbers[i]
-      }).attr("id", "card" + numbers[i]).appendTo("#cardHolder").draggable({revert: true});
+      }).attr("id", "card" + numbers[i]).appendTo("#cardHolder").draggable({
+        containment: "#game",
+        stack: "#cardHolder div",
+        cursor: "move",
+        revert: true
+      });
     }
 
     var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
