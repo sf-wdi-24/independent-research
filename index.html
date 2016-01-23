@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Matching Numbers Game</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		
+		<!-- custom css link -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>	
+	
+	<body>
+		<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+		<div class="reveal">
+			<!-- Wrap all slides in a single "slides" class -->
+			<div class="slides">
+				
+				<!-- ALL SLIDES GO HERE -->
+				<section>
+					<h2>Matching Numbers Game</h2>
+					<p>Drag the number card on the top down to match with number slot at the bottom</p>
+				</section>
+				
+				<section>
+					<div id="game">
+						<div id="cardHolder"></div>
+						<div id="slotHolder"></div>
+						<div id="successMessage" hidden>
+							<p>You did it!</p>
+							<button id="playAgain">Play Again</button>
+						</div>
+					</div>
+				</section>
+
+				<section id="section3">
+					<h2>Credits</h2>
+					<p>Author: Trung Huynh</p>
+					<p>This game was made based on Jquery Draggable Droppable tutorial.</p>
+					<p>Thanks <a href="http://hakim.se/">Hakim El Hattab</a> for a wonderful Reveal.js librabry.</p>
+				</section>
+				
+			</div>
+		</div>
+		<!-- jquery -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<!-- jquery ui -->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<!-- custom js -->
+		<script type="text/javascript" src="main.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		
+		<script>
+			// Required, even if empty.
+			Reveal.initialize({
+			});
+		</script>
+	</body>
+</html>
